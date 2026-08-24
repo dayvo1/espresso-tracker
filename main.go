@@ -22,6 +22,7 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Post("/register", registerHandler(db))
+	r.Post("/login", loginHandler(db))
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 
