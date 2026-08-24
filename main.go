@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"log"
+	"net/http"
 	"os"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
 )
@@ -18,6 +20,9 @@ func main() {
 	}
 	defer db.Close(context.Background())
 
-	log.Println("connected to database successfully")
+	r := chi.NewRouter()
+	r.Post("/register", registerHandler(db))
+
+	log.Fatal(http.ListenAndServe(":8080", r))
 
 }
