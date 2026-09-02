@@ -24,6 +24,11 @@ func main() {
 	r.Post("/register", registerHandler(db))
 	r.Post("/login", loginHandler(db))
 
+	r.Group(func(r chi.Router) {
+		r.Use(authMiddleware)
+		r.Post("/bags", bagsHandler(db))
+	})
+
 	log.Fatal(http.ListenAndServe(":8080", r))
 
 }

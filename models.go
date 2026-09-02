@@ -30,3 +30,9 @@ type RegisterRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
+type CreateBagRequest struct {
+	RoasterName string `json:"roasterName"`
+	BeanOrigin  string `json:"beanOrigin"`
+	RoastDate   string `json:"roastDate"`
+}
